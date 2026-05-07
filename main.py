@@ -51,6 +51,10 @@ def check_transaction(money_received, drink_cost):
     else:
         return True
 
+def make_coffee(resource, drink_resource):
+    resource['water'] -= drink_resource['water']
+    resource['milk'] -= drink_resource['milk']
+    resource['coffee'] -= drink_resource['coffee']
 
 
 
