@@ -41,6 +41,17 @@ def process_coins():
 
     return m_quarters + m_dimes + m_nickles + m_pennies
 
+def check_transaction(money_received, drink_cost):
+    if drink_cost > money_received:
+        print("That's not enough money. Money refunded")
+        return False
+    elif money_received > drink_cost:
+        print(f'Here is $ {money_received - drink_cost} in change.')
+        return True
+    else:
+        return True
+
+
 
 
 while True:
