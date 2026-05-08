@@ -8,6 +8,7 @@ def format_report_resource(resource):
 
     return f'Water: {water} ml\nMilk: {milk} ml\nCoffee: {coffee} g\nMoney: $ {money}'
 
+
 def check_resources(resource, drink):
     r_water = resource['water']
     r_milk = resource['milk']
@@ -28,6 +29,7 @@ def check_resources(resource, drink):
         print('There is not enough coffee.')
         return False
 
+
 def process_coins():
     quarters = int(input('How many quarters ( $ 0.25 ) ?: '))
     dimes =  int(input('How many dimes ( $ 0.10 ) ? : '))
@@ -41,6 +43,7 @@ def process_coins():
 
     return m_quarters + m_dimes + m_nickles + m_pennies
 
+
 def check_transaction(money_received, drink_cost):
     if drink_cost > money_received:
         print("That's not enough money. Money refunded")
@@ -51,18 +54,33 @@ def check_transaction(money_received, drink_cost):
     else:
         return True
 
+
 def make_coffee(resource, drink_resource):
     resource['water'] -= drink_resource['water']
     resource['milk'] -= drink_resource['milk']
     resource['coffee'] -= drink_resource['coffee']
 
+espresso_water = MENU['espresso']['ingredients']['water']
+espresso_coffee = MENU['espresso']['ingredients']['coffee']
+espresso_cost = MENU['espresso']['cost']
+
+latte_water = MENU['latte']['ingredients']['water']
+latte_coffee = MENU['latte']['ingredients']['coffee']
+latte_milk = MENU['latte']['ingredients']['milk']
+latte_cost = MENU['latte']['cost']
+
+cappuccino_water = MENU['cappuccino']['ingredients']['water']
+cappuccino_coffee = MENU['cappuccino']['ingredients']['coffee']
+cappuccino_milk = MENU['cappuccino']['ingredients']['milk']
+cappuccino_cost = MENU['cappuccino']['cost']
 
 
 while True:
-    prompt = input('What would you like? (espresso / latte / cappuccino ): ').lower()
+    prompt = input('What would you like? -> espresso / latte / cappuccino : ').lower()
 
     if prompt == 'report'.lower():
         print(format_report_resource(resources))
+
 
 
 
