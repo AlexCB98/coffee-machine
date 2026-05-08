@@ -49,33 +49,22 @@ def make_coffee(resource, drink_resource):
         resource[ingredients] -= drink_resource[ingredients]
 
 while True:
-    prompt = input('What would you like? -> espresso / latte / cappuccino : ').lower()
 
-    if prompt == 'report'.lower():
-        print(format_report_resource(resources))
+    try:
+        prompt = input('What would you like? -> espresso / latte / cappuccino : ').lower()
 
-    if prompt == 'espresso':
+        if prompt == 'off'.lower():
+            break
+
+        if prompt == 'report'.lower():
+            print(format_report_resource(resources))
+            continue
+
         if check_resources(resources, MENU[prompt]['ingredients']):
             if check_transaction(process_coins(), MENU[prompt]['cost']):
                 make_coffee(resources, MENU[prompt]['ingredients'])
                 resources['money'] += MENU[prompt]['cost']
-                print('Here is your espresso.')
+                print(f'Here is your {prompt}.')
 
-
-    if prompt == 'latte':
-        if check_resources(resources, MENU[prompt]['ingredients']):
-            if check_transaction(process_coins(), MENU[prompt]['cost']):
-                make_coffee(resources, MENU[prompt]['ingredients'])
-                resources['money'] += MENU[prompt]['cost']
-                print('Here is your latte.')
-
-
-
-
-
-
-
-
-
-    if prompt == 'off'.lower():
-        break
+    except KeyError:
+        print('Invalid. Try again.')
