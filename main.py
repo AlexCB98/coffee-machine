@@ -58,7 +58,16 @@ while True:
         if check_resources(resources, MENU[prompt]['ingredients']):
             if check_transaction(process_coins(), MENU[prompt]['cost']):
                 make_coffee(resources, MENU[prompt]['ingredients'])
+                resources['money'] += MENU[prompt]['cost']
                 print('Here is your espresso.')
+
+
+    if prompt == 'latte':
+        if check_resources(resources, MENU[prompt]['ingredients']):
+            if check_transaction(process_coins(), MENU[prompt]['cost']):
+                make_coffee(resources, MENU[prompt]['ingredients'])
+                resources['money'] += MENU[prompt]['cost']
+                print('Here is your latte.')
 
 
 
