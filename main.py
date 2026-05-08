@@ -37,7 +37,7 @@ def check_transaction(money_received, drink_cost):
         print("That's not enough money. Money refunded")
         return False
     elif money_received > drink_cost:
-        print(f'Here is $ {money_received - drink_cost} in change.')
+        print(f'Here is $ {round(money_received - drink_cost,2)} in change.')
         return True
     else:
         return True
