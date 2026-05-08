@@ -10,24 +10,12 @@ def format_report_resource(resource):
 
 
 def check_resources(resource, drink):
-    r_water = resource['water']
-    r_milk = resource['milk']
-    r_coffee = resource['coffee']
-    d_water = drink['water']
-    d_milk = drink['milk']
-    d_coffee = drink['coffee']
 
-    if r_water >= d_water and r_milk >= d_milk and r_coffee >= d_coffee:
-        return True
-    elif r_water < d_water:
-        print('There is not enough water.')
-        return False
-    elif r_milk < d_milk:
-        print('There is not enough milk.')
-        return False
-    else:
-        print('There is not enough coffee.')
-        return False
+    for ingredients in drink:
+        if resource[ingredients] < drink[ingredients]:
+            print(f'There is not enough {ingredients}.')
+            return False
+    return True
 
 
 def process_coins():
@@ -56,30 +44,24 @@ def check_transaction(money_received, drink_cost):
 
 
 def make_coffee(resource, drink_resource):
-    resource['water'] -= drink_resource['water']
-    resource['milk'] -= drink_resource['milk']
-    resource['coffee'] -= drink_resource['coffee']
 
-espresso_water = MENU['espresso']['ingredients']['water']
-espresso_coffee = MENU['espresso']['ingredients']['coffee']
-espresso_cost = MENU['espresso']['cost']
-
-latte_water = MENU['latte']['ingredients']['water']
-latte_coffee = MENU['latte']['ingredients']['coffee']
-latte_milk = MENU['latte']['ingredients']['milk']
-latte_cost = MENU['latte']['cost']
-
-cappuccino_water = MENU['cappuccino']['ingredients']['water']
-cappuccino_coffee = MENU['cappuccino']['ingredients']['coffee']
-cappuccino_milk = MENU['cappuccino']['ingredients']['milk']
-cappuccino_cost = MENU['cappuccino']['cost']
-
+    for ingredients in drink_resource:
+        resource[ingredients] -= drink_resource[ingredients]
 
 while True:
     prompt = input('What would you like? -> espresso / latte / cappuccino : ').lower()
 
     if prompt == 'report'.lower():
         print(format_report_resource(resources))
+
+    if prompt == 'espresso':
+        if check_resources(resources, MENU[prompt]['ingredients']):
+            if check_transaction(process_coins(), MENU[prompt]['cost']):
+                make_coffee(resources, MENU[prompt]['ingredients'])
+                print('Here is your espresso.')
+
+
+
 
 
 
