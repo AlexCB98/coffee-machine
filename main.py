@@ -22,7 +22,7 @@ def process_coins():
     quarters = int(input('How many quarters ( $ 0.25 ) ?: '))
     dimes =  int(input('How many dimes ( $ 0.10 ) ? : '))
     nickles = int(input('How many nickles ( $ 0.05 ) ? : '))
-    pennies = int(input('How many pennies ( % 0.01 ) ? : '))
+    pennies = int(input('How many pennies ( $ 0.01 ) ? : '))
 
     m_quarters = quarters * 0.25
     m_dimes = dimes * 0.10
@@ -51,7 +51,8 @@ def make_coffee(resource, drink_resource):
 while True:
 
     try:
-        prompt = input('What would you like? -> espresso / latte / cappuccino : ').lower()
+        print('Espresso -> $ 1.5 / Latte -> $ 2.5 / Cappuccino -> $ 3.0')
+        prompt = input('What would you like?: ').lower()
 
         if prompt == 'off'.lower():
             break
